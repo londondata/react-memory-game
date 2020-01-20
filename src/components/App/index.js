@@ -15,6 +15,10 @@ function App() {
   }, []);
 
   useEffect(() => {
+    preloadImages();
+  }, cards);
+
+  useEffect(() => {
     const resizeListener = window.addEventListener("resize", resizeBoard);
     return () => window.removeEventListener("resize", resizeListener);
   });
@@ -34,6 +38,13 @@ function App() {
         setTimeout(resetCards, 2000);
       }
     }
+  };
+
+  const preloadImages = () => {
+    cards.map(card => {
+      const src = `/img/${card.type}.jpeg`;
+      new Image().src = src;
+    });
   };
 
   const resetCards = () => {
