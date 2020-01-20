@@ -34,7 +34,7 @@ function Card({
           <img
             style={{ height, width }}
             className={flipped ? "front" : "back"}
-            src={flipped || solved ? `/img/${type}.jpeg` : `/img/cardback.jpg`}
+            src={flipped || solved ? `${process.env.PUBLIC_URL}/img/${type}.jpeg` : `${process.env.PUBLIC_URL}/img/cardback.jpg`}
           />
         </div>
       </div>
