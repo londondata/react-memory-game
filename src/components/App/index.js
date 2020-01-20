@@ -69,14 +69,17 @@ function App() {
   };
 
   return (
-    <Gameboard
-      dimension={dimension}
-      cards={cards}
-      flipped={flipped}
-      handleClick={handleClick}
-      disabled={disabled}
-      solved={solved}
-    />
+    <>
+      <h2>let's play a memory game!</h2>
+      <Gameboard
+        dimension={dimension}
+        cards={cards}
+        flipped={flipped}
+        handleClick={handleClick}
+        disabled={disabled}
+        solved={solved}
+      />
+    </>
   );
 }
 
