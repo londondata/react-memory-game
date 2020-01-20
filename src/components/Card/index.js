@@ -7,12 +7,22 @@ Card.propTypes = {
   id: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
   flipped: PropTypes.bool.isRequired,
+  solved: PropTypes.bool.isRequired,
   height: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   disabled: PropTypes.bool.isRequired
 };
 
-function Card({ handleClick, id, type, flipped, height, width, disabled }) {
+function Card({
+  handleClick,
+  id,
+  type,
+  flipped,
+  height,
+  width,
+  disabled,
+  solved
+}) {
   return (
     <>
       <div
@@ -24,7 +34,7 @@ function Card({ handleClick, id, type, flipped, height, width, disabled }) {
           <img
             style={{ height, width }}
             className={flipped ? "front" : "back"}
-            src={flipped ? `/img/${type}.jpeg` : `/img/cardback.jpg`}
+            src={flipped || solved ? `/img/${type}.jpeg` : `/img/cardback.jpg`}
           />
         </div>
       </div>
