@@ -1,20 +1,33 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Card from "../Card";
 
-function Gameboard() {
+import "./styles.css";
+
+Gameboard.propTypes = {
+  cards: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  flipped: PropTypes.arrayOf(PropTypes.number).isRequired,
+  handleClick: PropTypes.func.isRequired,
+  dimension: PropTypes.number.isRequired,
+  disabled: PropTypes.bool.isRequired
+};
+
+function Gameboard({ disabled, dimension, cards, flipped, handleClick }) {
   return (
     <>
-      <div style={{ padding: "20px" }} className="container">
-        <div className="ml-1 row w-100">
-          <div className="col-3">
-            <Card />
-          </div>
-          <div className="col-9">
-            <div className="row">
-              <p>test2</p>
-            </div>
-          </div>
-        </div>
+      <div className="gameboard">
+        {cards.map(card => (
+          <Card
+            key={card.id}
+            id={card.id}
+            type={card.type}
+            width={dimension / 4.5}
+            height={dimension / 4.5}
+            flipped={flipped.includes(card.id)}
+            handleClick={handleClick}
+            disabled={disabled}
+          />
+        ))}
       </div>
     </>
   );
