@@ -26,17 +26,11 @@ function gameReducer(prevState, action) {
 const initialState = {
   cards: [],
   flipped: [],
-  // dimension: 400,
   solved: [],
   disabled: false
 };
 
 function App() {
-  // const [cards, setCards] = useState([]);
-  // const [flipped, setFlipped] = useState([]);
-  // const [solved, setSolved] = useState([]);
-  // const [disabled, setDisabled] = useState(false);
-
   const [dimension, setDimension] = useState(400);
 
   const [state, dispatch] = React.useReducer(gameReducer, initialState);
@@ -63,14 +57,13 @@ function App() {
       dispatch({ type: "enableBoard" });
     } else {
       if (sameCardClicked(id)) return;
-      dispatch({ type: "flippedCards", payload: [[0], id] });
+      dispatch({ type: "flippedCards", payload: [flipped[0], id] });
       if (isMatch(id)) {
         dispatch({ type: "flippedCards", payload: [id] });
         dispatch({ type: "solvedCards", payload: [...solved, flipped[0], id] });
         dispatch({ type: "resetFlippedCards" });
       } else {
-        dispatch({ type: "resetFlippedCards" });
-        setTimeout(2000);
+        setTimeout(() => dispatch({ type: "resetFlippedCards" }), 2000);
       }
     }
   };
@@ -82,11 +75,6 @@ function App() {
     const flippedCard = cards.find(card => flipped[0] === card.id);
     return flippedCard.type === clickedCard.type;
   };
-
-  // const resetCards = () => {
-  //   setFlipped([]);
-  //   setDisabled(false);
-  // };
 
   const preloadImages = () => {
     cards.map(card => {
