@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Gameboard from "../Gameboard";
 import initializeDeck from "../Deck/index.js";
+
+const firstDeck = initializeDeck();
 
 function App() {
   const { cards, flipped, solved, disabled } = useSelector(state => state);
@@ -12,24 +14,27 @@ function App() {
 
   useEffect(() => {
     resizeBoard();
-    dispatchGameState({ type: "generateCards", payload: initializeDeck() });
-  }, []);
+    dispatchGameState({
+      type: "generateCards",
+      payload: firstDeck
+    });
+  }, [dispatchGameState]);
 
-  useEffect(() => {
-    preloadImages();
-  }, cards);
+  // useEffect(() => {
+  //   preloadImages();
+  // }, cards);
 
   useEffect(() => {
     const resizeListener = window.addEventListener("resize", resizeBoard);
     return () => window.removeEventListener("resize", resizeListener);
-  });
+  }, []);
 
-  const preloadImages = () => {
-    cards.map(card => {
-      const src = `/img/${card.type}.jpeg`;
-      new Image().src = src;
-    });
-  };
+  // const preloadImages = () => {
+  //   cards.map(card => {
+  //     const src = `/img/${card.type}.jpeg`;
+  //     new Image().src = src;
+  //   });
+  // };
 
   const resizeBoard = () => {
     setDimension(
@@ -57,9 +62,15 @@ function App() {
       dispatchGameState({ type: "enableBoard" });
     } else {
       if (sameCardClicked(id)) return;
-      dispatchGameState({ type: "flippedCards", payload: [flipped[0], id] });
+      dispatchGameState({
+        type: "flippedCards",
+        payload: [flipped[0], id]
+      });
       if (isMatch(id)) {
-        dispatchGameState({ type: "flippedCards", payload: [id] });
+        dispatchGameState({
+          type: "flippedCards",
+          payload: [id]
+        });
         dispatchGameState({
           type: "solvedCards",
           payload: [...solved, flipped[0], id]
@@ -73,6 +84,26 @@ function App() {
       }
     }
   };
+
+  //local storage
+
+  // useEffect(() => {
+  //   const LScards = localStorage.getItem(
+  //     "cards",
+  //     "flipped",
+  //     "solved",
+  //     "disabled"
+  //   );
+  //   if (LScards)
+  //     dispatchGameState({
+  //       type: "storeGame",
+  //       payload: JSON.parse(LScards)
+  //     });
+  // }, [dispatchGameState]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("cards", JSON.stringify(cards));
+  // }, [cards]);
 
   return (
     <>

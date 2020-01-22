@@ -12,20 +12,28 @@ function shuffle(array) {
 
 export default function initializeDeck() {
   let id = 0;
-  const cards = ["pikachu", "gastly", "eevee", "charmander"].reduce(
-    (acc, type) => {
-      acc.push({
-        id: id++,
-        type
-      });
-      acc.push({
-        id: id++,
-        type
-      });
-      return acc;
-    },
-    []
-  );
+  const cards = [
+    "pikachu",
+    "gastly",
+    "eevee",
+    "charmander",
+    "charizard",
+    "gengar",
+    "golbat",
+    "riolu",
+    "typhlosion",
+    "muk"
+  ].reduce((acc, type) => {
+    acc.push({
+      id: id++,
+      type
+    });
+    acc.push({
+      id: id++,
+      type
+    });
+    return acc;
+  }, []);
 
   return shuffle(cards);
 }
