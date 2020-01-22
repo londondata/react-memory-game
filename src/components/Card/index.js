@@ -34,7 +34,7 @@ function Card({
           <img
             style={{ height, width }}
             className={flipped ? "front" : "back"}
-            src={flipped || solved ? `/img/${type}.jpeg` : `/img/cardback.jpg`}
+            src={flipped || solved ? `/img/${type}.jpeg` : `/img/cardback.jpeg`}
           />
         </div>
       </div>

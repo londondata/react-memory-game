@@ -6,7 +6,6 @@ import initializeDeck from "../Deck/index.js";
 function App() {
   const { cards, flipped, solved, disabled } = useSelector(state => state);
   const dispatchGameState = useDispatch();
-
   const [dimension, setDimension] = useState(400);
 
   //board settings
@@ -16,21 +15,21 @@ function App() {
     dispatchGameState({ type: "generateCards", payload: initializeDeck() });
   }, []);
 
-  // useEffect(() => {
-  //   preloadImages();
-  // }, cards);
+  useEffect(() => {
+    preloadImages();
+  }, cards);
 
   useEffect(() => {
     const resizeListener = window.addEventListener("resize", resizeBoard);
     return () => window.removeEventListener("resize", resizeListener);
   });
 
-  // const preloadImages = () => {
-  //   cards.map(card => {
-  //     const src = `/img/${card.type}.jpeg`;
-  //     new Image().src = src;
-  //   });
-  // };
+  const preloadImages = () => {
+    cards.map(card => {
+      const src = `/img/${card.type}.jpeg`;
+      new Image().src = src;
+    });
+  };
 
   const resizeBoard = () => {
     setDimension(
@@ -42,6 +41,14 @@ function App() {
   };
 
   //game logic
+
+  const sameCardClicked = id => flipped.includes(id);
+
+  const isMatch = id => {
+    const clickedCard = cards.find(card => card.id === id);
+    const flippedCard = cards.find(card => flipped[0] === card.id);
+    return flippedCard.type === clickedCard.type;
+  };
 
   const handleClick = id => {
     dispatchGameState({ type: "disableBoard" });
@@ -65,14 +72,6 @@ function App() {
         );
       }
     }
-  };
-
-  const sameCardClicked = id => flipped.includes(id);
-
-  const isMatch = id => {
-    const clickedCard = cards.find(card => card.id === id);
-    const flippedCard = cards.find(card => flipped[0] === card.id);
-    return flippedCard.type === clickedCard.type;
   };
 
   return (
