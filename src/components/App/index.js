@@ -47,6 +47,17 @@ function App() {
 
   //game logic
 
+  const resetGame = () => {
+    localStorage.clear();
+    dispatchGameState({
+      type: "resetGame"
+    });
+    dispatchGameState({
+      type: "generateCards",
+      payload: firstDeck
+    });
+  };
+
   const sameCardClicked = id => flipped.includes(id);
 
   const isMatch = id => {
@@ -88,19 +99,21 @@ function App() {
   //local storage
 
   useEffect(() => {
-    console.log("useEffect :: initial");
-    const LScards = localStorage.getItem("cards");
+    const LScards = {
+      cards: JSON.parse(localStorage.getItem("cards")),
+      solved: JSON.parse(localStorage.getItem("solved")) || []
+    };
     if (LScards)
       dispatchGameState({
         type: "storeCards",
-        payload: JSON.parse(LScards)
+        payload: LScards
       });
   }, [dispatchGameState]);
 
   useEffect(() => {
-    console.log("useEffect :: cards");
     localStorage.setItem("cards", JSON.stringify(cards));
-  }, [cards]);
+    localStorage.setItem("solved", JSON.stringify(solved));
+  }, [cards, solved]);
 
   return (
     <>
@@ -113,6 +126,7 @@ function App() {
         disabled={disabled}
         solved={solved}
       />
+      <button onClick={resetGame}>restart game</button>
     </>
   );
 }

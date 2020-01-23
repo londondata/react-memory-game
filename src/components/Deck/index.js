@@ -16,7 +16,6 @@ export default function initializeDeck() {
     "pikachu",
     "gastly",
     "eevee",
-    "charmander",
     "charizard",
     "gengar",
     "golbat",
