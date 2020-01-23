@@ -95,10 +95,10 @@ function App() {
         type: "storeCards",
         payload: JSON.parse(LScards)
       });
-  }, []);
+  }, [dispatchGameState]);
 
   useEffect(() => {
-    console.log("useEffect :: todos has updated");
+    console.log("useEffect :: cards");
     localStorage.setItem("cards", JSON.stringify(cards));
   }, [cards]);
 
