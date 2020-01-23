@@ -87,23 +87,20 @@ function App() {
 
   //local storage
 
-  // useEffect(() => {
-  //   const LScards = localStorage.getItem(
-  //     "cards",
-  //     "flipped",
-  //     "solved",
-  //     "disabled"
-  //   );
-  //   if (LScards)
-  //     dispatchGameState({
-  //       type: "storeGame",
-  //       payload: JSON.parse(LScards)
-  //     });
-  // }, [dispatchGameState]);
+  useEffect(() => {
+    console.log("useEffect :: initial");
+    const LScards = localStorage.getItem("cards");
+    if (LScards)
+      dispatchGameState({
+        type: "storeCards",
+        payload: JSON.parse(LScards)
+      });
+  }, []);
 
-  // useEffect(() => {
-  //   localStorage.setItem("cards", JSON.stringify(cards));
-  // }, [cards]);
+  useEffect(() => {
+    console.log("useEffect :: todos has updated");
+    localStorage.setItem("cards", JSON.stringify(cards));
+  }, [cards]);
 
   return (
     <>

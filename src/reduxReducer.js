@@ -9,14 +9,8 @@ export default (prevState = initialState, { type, payload }) => {
   switch (type) {
     case "generateCards":
       return { ...prevState, cards: payload };
-    case "storeGame":
-      return {
-        ...prevState,
-        cards: payload,
-        flipped: payload,
-        solved: payload,
-        disabled: payload
-      };
+    case "storeCards":
+      return { ...prevState, cards: payload };
     case "disableBoard":
       return { ...prevState, disabled: true };
     case "enableBoard":
