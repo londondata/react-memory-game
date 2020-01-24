@@ -21,21 +21,10 @@ function App() {
     });
   }, [dispatchGameState]);
 
-  // useEffect(() => {
-  //   preloadImages();
-  // }, cards);
-
   useEffect(() => {
     const resizeListener = window.addEventListener("resize", resizeBoard);
     return () => window.removeEventListener("resize", resizeListener);
   }, []);
-
-  // const preloadImages = () => {
-  //   cards.map(card => {
-  //     const src = `/img/${card.type}.jpeg`;
-  //     new Image().src = src;
-  //   });
-  // };
 
   const resizeBoard = () => {
     setDimension(
@@ -45,6 +34,17 @@ function App() {
       )
     );
   };
+
+  // useEffect(() => {
+  //   preloadImages();
+  // }, cards);
+
+  // const preloadImages = () => {
+  //   cards.map(card => {
+  //     const src = `/img/${card.type}.jpeg`;
+  //     new Image().src = src;
+  //   });
+  // };
 
   //game logic
 
@@ -119,7 +119,7 @@ function App() {
   return (
     <>
       <h3>let's play a pokemon memory game!</h3>
-      <h4>can you catch them all?</h4>
+      <h4>can you match 'em all?</h4>
       <Gameboard
         dimension={dimension}
         cards={cards}
