@@ -2,7 +2,6 @@
   perspective: 1000px;
   display: inline-block;
   border: 1px solid white;
-  background: black;
 }
 
 .flip-container.flipped .flipper {

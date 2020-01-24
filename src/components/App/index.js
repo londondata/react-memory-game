@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Gameboard from "../Gameboard";
 import initializeDeck from "../Deck/index.js";
+import "./styles.css";
 
 const firstDeck = initializeDeck();
 
@@ -117,7 +118,8 @@ function App() {
 
   return (
     <>
-      <h2>let's play a memory game!</h2>
+      <h3>let's play a pokemon memory game!</h3>
+      <h4>can you catch them all?</h4>
       <Gameboard
         dimension={dimension}
         cards={cards}
