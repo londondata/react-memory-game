@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Card from "../Card";
-import pokemonBackground from "./public/pokemonbackground.jpg";
 
 import "./styles.css";
 
