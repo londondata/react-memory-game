@@ -1,4 +1,13 @@
 h3,
 h4 {
-  text-align: center;
+	text-align: center;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center;
+}
+
+.reset-button {
+	border-radius: 8px;
 }
