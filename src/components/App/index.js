@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import Gameboard from "../Gameboard";
 import initializeDeck from "../Deck/index.js";
 import "./styles.css";
-// import pokemonBackground from "pokemonbackground.jpg";
 
 const firstDeck = initializeDeck();
 
@@ -119,21 +118,21 @@ function App() {
 
 	return (
 		<>
-				<h3>let's play a pokemon memory game!</h3>
-				<h4>can you match 'em all?</h4>
-				<Gameboard
-					dimension={dimension}
-					cards={cards}
-					flipped={flipped}
-					handleClick={handleClick}
-					disabled={disabled}
-					solved={solved}
-				/>
-				<div className="button-container">
-					<button className="reset-button" onClick={resetGame}>
-						restart game
-					</button>
-				</div>
+			<h3>let's play a pokemon memory game!</h3>
+			<h4>can you match 'em all?</h4>
+			<Gameboard
+				dimension={dimension}
+				cards={cards}
+				flipped={flipped}
+				handleClick={handleClick}
+				disabled={disabled}
+				solved={solved}
+			/>
+			<div className="button-container">
+				<button className="reset-button nes-btn" onClick={resetGame}>
+					restart game
+				</button>
+			</div>
 		</>
 	);
 }

@@ -1,8 +1,10 @@
 * {
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-family: "Press Start 2P";
+	color: #ee0401;
 	margin: 0;
 	padding: 0;
 }
 body {
-	background-image: url("./public/pokemonbackground.jpg");
+	background: url("/pokebackground.jpg") no-repeat center center fixed;
+	background-size: cover;
 }

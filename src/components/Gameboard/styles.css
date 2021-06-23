@@ -1,15 +1,22 @@
 body {
-	width: 100%;
 	display: flex;
 	justify-content: center;
-	background-image: url("/public/img/pokemonbackground.jpg");
 }
 
 .gameboard {
-	margin: 0px;
+	margin: 10px;
 	padding: 10px 20px;
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	justify-items: center;
-	grid-gap: 10px;
+	grid-gap: 12px;
+}
+
+@media screen and (max-width: 768px) {
+	.gameboard {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		justify-items: center;
+		grid-gap: 5px;
+	}
 }
